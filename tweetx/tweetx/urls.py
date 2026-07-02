@@ -42,7 +42,10 @@ urlpatterns = [
         template_name='registration/password_reset_complete.html'
     ), name='password_reset_complete'),
 
-    # path('password-reset-complete/', views.reset_complete, name = 'reset_complete' ),
+]
 
-
-]+static(settings.MEDIA_URL,document_root = settings.MEDIA_ROOT)
+from django.urls import re_path
+from django.views.static import serve
+urlpatterns += [
+    re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
+]
