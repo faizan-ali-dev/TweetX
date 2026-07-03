@@ -31,6 +31,7 @@ def create_tweet(request):
             tweet = form.save(commit=False)
             tweet.user = request.user
             tweet.save()
+            print("tweet save in database")
             return redirect('home')
     else:
         form = TweetForm()
