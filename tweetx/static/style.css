@@ -476,6 +476,7 @@ a:hover {
 
 /* Delete comment button */
 .comment-item .btn-outline-danger {
+  background: transparent;
   border: none;
   color: var(--text-muted);
   padding: 4px 8px;

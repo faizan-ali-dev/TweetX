@@ -10,10 +10,10 @@
         {% for tweet in tweets %}
         <div class="card mb-3 text-light position-relative">
           {% if tweet.user == user %}
-          <a href="{% url 'edit_tweet' tweet.id %}" class="position-absolute" style="top:12px; right:44px; color:#6366f1; font-size:16px; z-index:2;">
+          <a href="{% url 'edit_tweet' tweet.id %}" class="position-absolute top-0 end-0 mt-3 me-5" style="color:#6366f1; font-size:16px; z-index:2;">
             <i class="fa-solid fa-pen-to-square"></i>
           </a>
-          <a href="{% url 'delete_tweet' tweet.id %}" class="position-absolute" style="top:12px; right:16px; color:#ef4444; font-size:16px; z-index:2;">
+          <a href="{% url 'delete_tweet' tweet.id %}" class="position-absolute top-0 end-0 mt-3 me-3" style="color:#ef4444; font-size:16px; z-index:2;">
             <i class="fa-solid fa-trash"></i>
           </a>
           {% endif %}
