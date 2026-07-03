@@ -134,26 +134,38 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
 # Default primary key field type
-# https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
 
 # Media Configuration
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-# Azure Blob Storage Configuration
+# Static and Media Storage Configuration
 if os.environ.get('AZURE_ACCOUNT_NAME'):
-    DEFAULT_FILE_STORAGE = 'storages.backends.azure_storage.AzureStorage'
-    AZURE_ACCOUNT_NAME = os.environ.get('AZURE_ACCOUNT_NAME')
-    AZURE_ACCOUNT_KEY = os.environ.get('AZURE_ACCOUNT_KEY')
-    AZURE_CONTAINER = os.environ.get('AZURE_CONTAINER', 'media')
-    # Set expiration to None so the URLs don't expire
-    AZURE_URL_EXPIRATION_SECS = None
+    STORAGES = {
+        "default": {
+            "BACKEND": "storages.backends.azure_storage.AzureStorage",
+            "OPTIONS": {
+                "account_name": os.environ.get('AZURE_ACCOUNT_NAME'),
+                "account_key": os.environ.get('AZURE_ACCOUNT_KEY'),
+                "azure_container": os.environ.get('AZURE_CONTAINER', 'media'),
+                "expiration_secs": None,
+            },
+        },
+        "staticfiles": {
+            "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+        },
+    }
+else:
+    STORAGES = {
+        "default": {
+            "BACKEND": "django.core.files.storage.FileSystemStorage",
+        },
+        "staticfiles": {
+            "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+        },
+    }
 
 
 LOGIN_URL = '/accounts/login'
