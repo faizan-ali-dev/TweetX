@@ -30,9 +30,15 @@ def create_tweet(request):
         if form.is_valid:
             tweet = form.save(commit=False)
             tweet.user = request.user
-            tweet.save()
-            print("tweet save in database")
-            return redirect('home')
+            try:
+                tweet.save()
+                print("tweet save in database")
+                return redirect('home')
+            except Exception as e:
+                import traceback
+                error_msg = f"AZURE STORAGE UPLOAD FAILED:\\n\\n{str(e)}\\n\\n{traceback.format_exc()}"
+                from django.http import HttpResponse
+                return HttpResponse(error_msg, content_type="text/plain", status=500)
     else:
         form = TweetForm()
     return render(request, 'tweet_form.html', {'form':form})
