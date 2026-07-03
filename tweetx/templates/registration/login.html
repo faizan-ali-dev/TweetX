@@ -1,28 +1,24 @@
 {% extends "layout.html" %}
-{% block title %}login - TweetX {% endblock %}
+{% block title %}Login - TweetX {% endblock %}
 {% load static %}
-<link rel="stylesheet" href="{% static "style.css" %}">
-
 
 {% block sidebar %}{% endblock %}
 {% block menu-button %} {% endblock %}
 
 {% block content %}
 <div class="auth-container">
-    <h2 style="text-align:center; margin-bottom:18px;">Login Here</h2>
+    <h2>Welcome back</h2>
     <form method="post" class="styled-auth-form">
         {% csrf_token %}
         {% for field in form %}
-            <label for="{{ field.id_for_label }}" style="margin-top:4px; color:#ccc; font-size:15px;">{{ field.label }}</label>
+            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
             {{ field.as_widget }}
         {% endfor %}
-        <a href="{% url 'password_reset'%}">Forget Password?</a>
-        <button type="submit" class="auth-btn">Login</button>
+        <a href="{% url 'password_reset' %}" style="font-size: 13px; text-align: right;">Forgot password?</a>
+        <button type="submit" class="auth-btn">Sign In</button>
     </form>
     <div class="auth-link">
-      <p>Don't have an account <a href="{% url 'register' %}"> Register Here</a></p> 
+      <p>Don't have an account? <a href="{% url 'register' %}">Create one</a></p> 
     </div>
 </div>
-
 {% endblock %}
-<script src="{%static 'script.js'%}"></script>

@@ -1,76 +1,43 @@
-{% extends "layout.html" %} {% block title %}My Tweets - TweetX {% endblock %} {%
-block content %} {% block content %}
+{% extends "layout.html" %} 
+{% block title %}My Tweets - TweetX {% endblock %} 
+
+{% block content %}
 <div class="container-fluid mt-5">
-  <div
-    class="row justify-content-center align-items-center"
-    style="min-height: 80vh"
-  >
+  <div class="row justify-content-center align-items-start">
     <div class="col-md-3"></div>
-    <!-- Center column for tweet cards -->
-    <div
-      class="col-md-6 d-flex flex-column justify-content-center align-items-center"
-    >
+    <div class="col-md-6 d-flex flex-column justify-content-center align-items-center">
       <div class="tweet-cards-box w-100 p-2">
         {% for tweet in tweets %}
-        {% comment %} {% if tweet.user == user %} {% endcomment %}
-        <div
-          class="card mb-3 bg-dark text-light border-secondary mt-5 position-relative"
-        >
+        <div class="card mb-3 text-light position-relative">
           {% if tweet.user == user %}
-          <a
-            href="{% url 'edit_tweet' tweet.id %}"
-            class="position-absolute"
-            style="
-              top: 4px;
-              right: 38px;
-              color: #1976d2;
-              font-size: 18px;
-              z-index: 2;
-            "
-          >
+          <a href="{% url 'edit_tweet' tweet.id %}" class="position-absolute" style="top:12px; right:44px; color:#6366f1; font-size:16px; z-index:2;">
             <i class="fa-solid fa-pen-to-square"></i>
           </a>
-          <a
-            href="{% url 'delete_tweet' tweet.id %}"
-            class="position-absolute"
-            style="
-              top: 4px;
-              right: 10px;
-              color: #ff4b4b;
-              font-size: 18px;
-              z-index: 2;
-            "
-          >
+          <a href="{% url 'delete_tweet' tweet.id %}" class="position-absolute" style="top:12px; right:16px; color:#ef4444; font-size:16px; z-index:2;">
             <i class="fa-solid fa-trash"></i>
           </a>
           {% endif %}
-          <div class="d-flex flex-column align-items-center">
+          <div class="d-flex flex-column">
             <div class="card-body py-2 w-100">
-              <h6 class="card-title mb-2 text-muted">
-                {{ tweet.user.username }}
-              </h6>
+              <h6 class="card-title mb-2">@{{ tweet.user.username }}</h6>
               {% if tweet.photo %}
-              <div class="d-flex justify-content-center mb-2">
-                <img
-                  src="{{ tweet.photo.url }}"
-                  class="img-fluid rounded"
-                  alt="Tweet Image"
-                  style="width: 1000px; height: 200px; object-fit: cover"
-                />
+              <div class="d-flex justify-content-center mb-3">
+                <img src="{{ tweet.photo.url }}" class="img-fluid rounded" alt="Tweet Image" style="max-width:100%; height:auto; max-height:400px; object-fit:cover; border-radius:12px;" />
               </div>
               {% endif %}
               <p class="card-text mb-1">{{ tweet.text }}</p>
               <p class="card-text">
-                <small class="text-muted"
-                  >{{ tweet.created_at|date:'M d, Y H:i' }}</small
-                >
+                <small class="text-muted">{{ tweet.created_at|date:'M d, Y H:i' }}</small>
               </p>
             </div>
           </div>
         </div>
-        {% comment %} {% endif %} {% endcomment %}
+        {% empty %}
+        <div class="text-center" style="padding-top: 120px;">
+          <i class="fa-regular fa-face-meh" style="font-size: 48px; color: var(--text-muted); margin-bottom: 16px; display:block;"></i>
+          <p style="color: var(--text-secondary); font-size: 16px;">You haven't tweeted yet. Start sharing!</p>
+        </div>
         {% endfor %}
-        
       </div>
     </div>
     <div class="col-md-3"></div>

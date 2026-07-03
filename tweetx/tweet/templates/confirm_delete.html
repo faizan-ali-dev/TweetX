@@ -1,21 +1,15 @@
-{% extends "layout.html" %} {% block title %} Delete Tweet {% endblock %}
+{% extends "layout.html" %} 
+{% block title %} Delete Tweet - TweetX {% endblock %}
 
 {% block content %}
-<style>
-  .center-delete-container {
-    min-height: 80vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-</style>
 <div class="center-delete-container">
-  <h2>Are you sure to delete this tweet?</h2>
-  <form method="post" class="mt-3">
+  <i class="fa-regular fa-circle-xmark" style="font-size: 48px; color: var(--danger); margin-bottom: 20px;"></i>
+  <h2>Delete this tweet?</h2>
+  <p style="color: var(--text-secondary); margin-bottom: 24px; font-size: 14px;">This action cannot be undone.</p>
+  <form method="post" class="d-flex gap-3">
     {% csrf_token %}
-    <button type="submit" class="btn btn-danger">Confirm</button>
-    <a href="{% url 'home' %}" class="btn btn-success ms-2">Cancel</a>
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a href="{% url 'home' %}" class="btn btn-success">Cancel</a>
   </form>
 </div>
 {% endblock %}

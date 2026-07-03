@@ -1,15 +1,13 @@
 {% extends "layout.html" %} 
 {% block title %}Register - TweetX {% endblock %}
-{%load static %}
+{% load static %}
 
-<link rel="stylesheet" href="{% static "style.css" %}"> 
-
-{%block sidebar %}{% endblock %} 
+{% block sidebar %}{% endblock %} 
 {% block menu-button %} {% endblock %}
 
 {% block content %}
 <div class="auth-container">
-  <h2 style="text-align: center; margin-bottom: 18px">Register Here</h2>
+  <h2>Create your account</h2>
 
   <form method="post" class="styled-auth-form">
     {% csrf_token %}
@@ -22,17 +20,13 @@
     {% endif %}
 
     {% for field in form %}
-    <label
-      for="{{ field.id_for_label }}"
-      style="margin-bottom: 4px; color: #ccc; font-size: 15px"
-      >{{ field.label }}</label
-    >
+    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
     {{ field.as_widget }}
     {% endfor %}
-    <button type="submit" class="auth-btn">Register</button>
+    <button type="submit" class="auth-btn">Create Account</button>
   </form>
   <div class="auth-link">
-    <p>Already have an account?<a href="{% url 'login' %}"> Login Here</a></p>
+    <p>Already have an account? <a href="{% url 'login' %}">Sign in</a></p>
   </div>
 </div>
 {% endblock %}

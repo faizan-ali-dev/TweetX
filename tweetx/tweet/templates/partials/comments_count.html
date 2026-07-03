@@ -1,4 +1,4 @@
 <button class="btn btn-outline-secondary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#comments-{{ tweet.id }}" aria-expanded="false" aria-controls="comments-{{ tweet.id }}">
   <i class="fa-regular fa-comment me-1"></i> 
-  {% if tweet.total_comments > 0 %}{{ tweet.total_comments }} Comment{% if tweet.total_comments > 1 %}s{% endif %}{% else %}Comments{% endif %}
+  {% if tweet.total_comments > 0 %}{{ tweet.total_comments }}{% endif %}
 </button>

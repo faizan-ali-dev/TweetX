@@ -4,9 +4,9 @@
        hx-post="{% url 'like_tweet' tweet.id %}"
        hx-target="#like-section-{{ tweet.id }}"
        hx-swap="outerHTML">
-        <i class="fa-regular fa-thumbs-up me-1"></i>
+        <i class="fa-{% if tweet.id in liked_tweet_ids %}solid{% else %}regular{% endif %} fa-heart me-1"></i>
         <span id="like-text-{{ tweet.id }}">
-            {% if tweet.likes.count > 0 %}{{ tweet.likes.count }} Like{% else %}Like{% endif %}
+            {% if tweet.likes.count > 0 %}{{ tweet.likes.count }}{% endif %}
         </span>
     </a>
 </div>

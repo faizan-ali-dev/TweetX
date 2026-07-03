@@ -1,26 +1,26 @@
-{% extends "layout.html" %} {% block title %} TweetX - Home {% endblock %}
+{% extends "layout.html" %} 
+{% block title %} New Tweet - TweetX {% endblock %}
 
 {% block content %}
 {% load static %}
-<link rel="stylesheet" href="{%static 'style.css'%}">
-
 
 <div class="center-form-container">
-        <form class="form" method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            {% for field in form %}
-                {{ field.as_widget }}
-            {% endfor %}
-            <button style="max-height: 40px;" type="submit">Post</button>
-        </form>
-        <script>
-            // Add placeholder to textarea rendered by Django form
-            document.addEventListener('DOMContentLoaded', function() {
-                var textareas = document.querySelectorAll('.form textarea');
-                textareas.forEach(function(textarea) {
-                    textarea.placeholder = 'Say something...';
-                });
+    <form class="form" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% for field in form %}
+            {{ field.as_widget }}
+        {% endfor %}
+        <button style="max-height: 44px;" type="submit">
+            <i class="fa-solid fa-paper-plane me-1"></i> Post
+        </button>
+    </form>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var textareas = document.querySelectorAll('.form textarea');
+            textareas.forEach(function(textarea) {
+                textarea.placeholder = 'What\'s on your mind?';
             });
-        </script>
+        });
+    </script>
 </div>
 {% endblock %}
