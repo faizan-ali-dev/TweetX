@@ -306,7 +306,7 @@ a:hover {
 }
 
 .tweet-cards-box .card .card-body {
-  padding: 20px !important;
+  padding: 16px !important;
 }
 
 .tweet-cards-box .card .card-title {
@@ -363,9 +363,9 @@ a:hover {
 
 /* --- Tweet Actions (Like / Comment buttons) --- */
 .tweet-actions {
-  padding-top: 12px;
+  padding-top: 8px;
   border-top: 1px solid var(--border-subtle);
-  margin-top: 12px !important;
+  margin-top: 8px !important;
 }
 
 .tweet-actions .btn-sm {
