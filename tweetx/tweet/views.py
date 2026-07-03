@@ -32,7 +32,7 @@ def create_tweet(request):
             tweet.user = request.user
             try:
                 tweet.save()
-                print("tweet save in database")
+                # print("tweet save in database")
                 return redirect('home')
             except Exception as e:
                 import traceback
